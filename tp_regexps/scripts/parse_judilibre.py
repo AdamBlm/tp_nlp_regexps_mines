@@ -81,3 +81,7 @@ def main():
                 html_decision = Decision.from_html(id, html_data)
                 print(html_decision.to_json())
     return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

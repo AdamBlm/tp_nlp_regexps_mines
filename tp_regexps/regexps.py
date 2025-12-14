@@ -5,7 +5,16 @@ decision_ref_re = re.compile(r'<a\s+href="/decision/(?P<id>[^\?]+)')
 #
 # Regexps pour le bloc titre
 #
-title_re = None  # TODO
+title_re = re.compile(
+	r'<h1>\s*'
+	r'(?P<day>\d{1,2})\s+'
+	r'(?P<month>[^\d<]+?)\s+'
+	r'(?P<year>\d{4})<br>\s*'
+	r'Cour\s+de\s+cassation<br>\s*'
+	r'Pourvoi\s+n°\s*'
+	r'(?P<number>[\d\-.]+)\s*</h1>',
+	re.UNICODE | re.IGNORECASE | re.DOTALL,
+)
 
 #
 # Regexps pour le "header"
@@ -34,6 +43,8 @@ chambre_re = re.compile(
 	r'|Troisième\schambre\scivile'
 	r')', re.UNICODE
 )
-publication_re = None  # TODO
-formation_re = None  # TODO
-ecli_re = None  # TODO
+publication_re = re.compile(r'(?P<publication>Publié au Bulletin|Publié au Rapport)')
+formation_re = re.compile(r'[-‐–—]\s*(?P<formation>Formation[^<]+)')
+ecli_re = re.compile(r"<p>(?P<ecli>ECLI:.*?)</p>")
+solution_re = re.compile(r'^\s*(?P<solution>CASSATION|REJET|IRRECEVABILITÉ|DÉSISTEMENT)\s*<br>', re.MULTILINE)
+texts_re = re.compile(r'Vu\s+(?:les?\s+)?(?P<texts>articles?[^<]+)\s*:\s*<br>', re.IGNORECASE)

@@ -2,12 +2,12 @@
   "kind": "decision",
   "id": "67514c126b10f0edcea72f45",
   "chamber": "Troisième chambre civile",
-  "formation": null,
+  "formation": "Formation restreinte hors RNSM/NA",
   "publication": null,
-  "number": null,
-  "ecli": null,
-  "decision_date": null,
+  "number": "23-15.866",
+  "ecli": "ECLI:FR:CCASS:2024:C300657",
+  "decision_date": "2024-12-05",
   "solution": null,
   "content": null,
-  "texts": null
+  "texts": "articles 564 à 567 du code de procédure civile"
 }

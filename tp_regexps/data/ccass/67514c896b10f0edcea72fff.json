@@ -2,12 +2,12 @@
   "kind": "decision",
   "id": "67514c896b10f0edcea72fff",
   "chamber": "Troisième chambre civile",
-  "formation": null,
-  "publication": null,
-  "number": null,
-  "ecli": null,
-  "decision_date": null,
+  "formation": "Formation de section",
+  "publication": "Publié au Bulletin",
+  "number": "23-16.270",
+  "ecli": "ECLI:FR:CCASS:2024:C300671",
+  "decision_date": "2024-12-05",
   "solution": null,
   "content": null,
-  "texts": null
+  "texts": "articles 1352-3, alinéa 1er, et 1352-7 du code civil"
 }

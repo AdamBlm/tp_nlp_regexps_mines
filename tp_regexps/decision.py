@@ -86,7 +86,9 @@ class Decision(object):
 
     @staticmethod
     def __get_ecli(data: str):
-        # TODO
+        m = regexps.ecli_re.search(data)
+        if m:
+            return m.group("ecli")
         return None
 
     @staticmethod
@@ -105,17 +107,37 @@ class Decision(object):
 
     @staticmethod
     def __get_publication(data: str):
-        # TODO
+        m = regexps.publication_re.search(data)
+        if m:
+            return m.group("publication")
         return None
 
     @staticmethod
     def __get_formation(data: str):
-        # TODO
+        m = regexps.formation_re.search(data)
+        if m:
+            return m.group("formation").strip()
+        return None
+
+    @staticmethod
+    def __get_solution(data: str):
+        m = regexps.solution_re.search(data)
+        if m:
+            return m.group("solution").lower()
+        return None
+
+    @staticmethod
+    def __get_texts(data: str):
+        m = regexps.texts_re.search(data)
+        if m:
+            return m.group("texts").strip()
         return None
 
     @staticmethod
     def __get_title(data: str):
-        # TODO
+        m = regexps.title_re.search(data)
+        if m:
+            return m
         return None
 
     @staticmethod
@@ -137,29 +159,17 @@ class Decision(object):
         header = cls.__get_header(html)
         #print(header)
         d.chamber = cls.__get_chambre(header)
-        # TODO d.ecli = cls.__get_ecli(header)
+        d.ecli = cls.__get_ecli(header)
         assert d.chamber is not None
-        # TODO d.publication = cls.__get_publication(header) or None
-        # TODO d.formation = cls.__get_formation(header) or None
-        #title = cls.__get_title(html)
-        #if title:
-        #    d.number = title.group("number")
-        #    day = int(title.group("day"))
-        #    assert day > 0 and day < 31, day
-        #    year = int(title.group("year"))
-        #    assert year > 1900 and year < 2300, year
-        #    month = title.group("month")
-        #    if re.match(r"d.cembre", month, re.I):
-        #        month = 12
-        #    else:
-        #        raise NotImplementedError(f"month: {month}")
-        #    d.decision_date = datetime.date(year, month, day).isoformat()
-        #    pass
-        #else:
-        #    print("NO TITLE")
-        # TODO: "solution"
+        d.publication = cls.__get_publication(header) or None
+        d.formation = cls.__get_formation(header) or None
+        title = cls.__get_title(html)
+        if title:
+            d.number = title.group("number")
+            d.decision_date = cls.__get_date(title)
+        d.solution = cls.__get_solution(html)
+        d.texts = cls.__get_texts(html)
         # TODO: "content"
-        # TODO: "texts"
         return d
 
 
